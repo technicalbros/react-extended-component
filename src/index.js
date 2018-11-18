@@ -12,26 +12,33 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
 var lodash_1 = require("lodash");
 function updateState(component, name, value) {
-    var key = arguments[0];
-    if (lodash_1.isObject(key)) {
-        component.setState(function (state) {
-            var keys = key;
-            lodash_1.each(keys, function () {
-                var v = arguments[1];
-                eval("state." + v + " = arguments[0]");
-            });
+    if (lodash_1.isFunction(name)) {
+        component.setState(function (_a) {
+            var state = __rest(_a, []);
+            name(state);
             return state;
         });
     }
+    else if (lodash_1.isObject(name)) {
+        // @ts-ignore
+        lodash_1.each(name, function (v, key) { return updateState(component, key, v); });
+    }
     else {
-        var value_1 = arguments[1];
-        component.setState(function (state) {
-            eval("arguments[0]." + key + " = value");
-            return state;
+        updateState(component, function (state) {
+            eval("state." + name + " = value");
         });
     }
 }

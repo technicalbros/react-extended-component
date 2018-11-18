@@ -1,22 +1,18 @@
 import {Component as ReactComponent} from "react";
-import {isObject, each} from "lodash";
+import {isObject, each, isFunction} from "lodash";
 
-export function updateState(component: ReactComponent, name: string | Object, value?: any): void {
-    const key = arguments[0];
-    if (isObject(key)) {
-        component.setState((state: any) => {
-            const keys: any = key;
-            each(keys, function () {
-                const v = arguments[1];
-                eval(`state.${v} = arguments[0]`);
-            })
+export function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
+    if (isFunction(name)) {
+        component.setState(({...state}: any) => {
+            name(state)
             return state;
         })
+    } else if (isObject(name)) {
+        // @ts-ignore
+        each(name, (v, key) => updateState(component, key, v))
     } else {
-        const value: any = arguments[1];
-        component.setState((state: any) => {
-            eval(`arguments[0].${key} = value`);
-            return state;
+        updateState(component, state => {
+            eval(`state.${name} = value`)
         })
     }
 }
