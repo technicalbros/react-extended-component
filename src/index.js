@@ -43,6 +43,10 @@ function updateState(component, name, value) {
     }
 }
 exports.updateState = updateState;
+function getState(component, name, defaultValue) {
+    return lodash_1.get(component, "state." + name, defaultValue);
+}
+exports.getState = getState;
 var Component = /** @class */ (function (_super) {
     __extends(Component, _super);
     function Component() {

@@ -1,5 +1,5 @@
 import {Component as ReactComponent} from "react";
-import {isObject, each, isFunction} from "lodash";
+import {isObject, each, isFunction, get} from "lodash";
 
 export function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
     if (isFunction(name)) {
@@ -15,6 +15,10 @@ export function updateState(component: ReactComponent, name: object | string | F
             eval(`state.${name} = value`)
         })
     }
+}
+
+export function getState(component: ReactComponent, name: string, defaultValue: any): any {
+    return get(component, `state.${name}`, defaultValue)
 }
 
 export class Component extends ReactComponent {
