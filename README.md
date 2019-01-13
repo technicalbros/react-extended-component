@@ -34,6 +34,10 @@ this.state.emails[0]
 But using `react extended-component` this is a very hassle free process, like below:
 
 ```javascript
+//Importing methods
+import {updateState, getState} from "react-extended-component"
+
+
 //For single key simple updation
 updateState(this, 'fname', 'Shridhar')
 
