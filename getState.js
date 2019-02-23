@@ -5,4 +5,3 @@ function getState(component, name, defaultValue) {
     return lodash_1.get(component, "state." + name, defaultValue);
 }
 exports.getState = getState;
-//# sourceMappingURL=getState.js.map

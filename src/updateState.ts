@@ -1,6 +1,6 @@
 import {Component as ReactComponent} from "react";
 
-import {isObject, each, isFunction, get} from "lodash";
+import {each, isFunction, isObject} from "lodash";
 
 export function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
     if (isFunction(name)) {

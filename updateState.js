@@ -29,4 +29,3 @@ function updateState(component, name, value) {
     }
 }
 exports.updateState = updateState;
-//# sourceMappingURL=updateState.js.map

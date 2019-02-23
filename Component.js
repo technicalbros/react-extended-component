@@ -26,4 +26,3 @@ var Component = /** @class */ (function (_super) {
     return Component;
 }(react_1.Component));
 exports.Component = Component;
-//# sourceMappingURL=Component.js.map
