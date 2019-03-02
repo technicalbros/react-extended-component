@@ -1,18 +1,17 @@
 {
   "name": "react-extended-component",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "main": "index.js",
   "scripts": {
     "watch": "tsc --watch"
   },
-  "peerDependencies": {
-    "lodash": "4.*",
-    "react": "16.*"
+  "dependencies": {
+    "lodash": "4.x",
+    "react": "16.x"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.121",
     "@types/react": "^16.8.4",
-    "react": "^16.8.2",
     "typescript": "^3.3.3"
   }
 }
