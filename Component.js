@@ -21,8 +21,8 @@ var Component = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Component.prototype.updateState = function (name, value) {
-        return updateState_1.updateState(this, name, value);
+        return updateState_1.default(this, name, value);
     };
     return Component;
 }(react_1.Component));
-exports.Component = Component;
+exports.default = Component;

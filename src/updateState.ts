@@ -2,7 +2,7 @@ import {Component as ReactComponent} from "react";
 
 import {each, isFunction, isObject} from "lodash";
 
-export function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
+export default function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
     if (isFunction(name)) {
         component.setState(({...state}: any) => {
             name(state)

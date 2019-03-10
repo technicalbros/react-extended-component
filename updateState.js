@@ -28,4 +28,4 @@ function updateState(component, name, value) {
         });
     }
 }
-exports.updateState = updateState;
+exports.default = updateState;
