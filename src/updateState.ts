@@ -1,18 +1,21 @@
 import {Component as ReactComponent} from "react";
 
-import {each, isFunction, isObject} from "lodash";
+import {isFunction, isObject} from "lodash";
 
-export default function updateState(component: ReactComponent, name: object | string | Function, value?: any): void {
+export default function updateState(component: ReactComponent, name: object | string | Function, value?: any) {
     if (isFunction(name)) {
-        component.setState(({...state}: any) => {
-            name(state)
-            return state;
+        return new Promise(resolve => {
+            component.setState(({...state}: any) => {
+                name(state)
+                return state;
+            }, resolve)
         })
     } else if (isObject(name)) {
-        // @ts-ignore
-        each(name, (v, key) => updateState(component, key, v))
+        return new Promise(resolve => {
+            component.setState(name, resolve)
+        })
     } else {
-        updateState(component, state => {
+        return updateState(component, state => {
             eval(`state.${name} = value`)
         })
     }

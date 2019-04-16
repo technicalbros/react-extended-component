@@ -12,18 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = require("lodash");
 function updateState(component, name, value) {
     if (lodash_1.isFunction(name)) {
-        component.setState(function (_a) {
-            var state = __rest(_a, []);
-            name(state);
-            return state;
+        return new Promise(function (resolve) {
+            component.setState(function (_a) {
+                var state = __rest(_a, []);
+                name(state);
+                return state;
+            }, resolve);
         });
     }
     else if (lodash_1.isObject(name)) {
-        // @ts-ignore
-        lodash_1.each(name, function (v, key) { return updateState(component, key, v); });
+        return new Promise(function (resolve) {
+            component.setState(name, resolve);
+        });
     }
     else {
-        updateState(component, function (state) {
+        return updateState(component, function (state) {
             eval("state." + name + " = value");
         });
     }
